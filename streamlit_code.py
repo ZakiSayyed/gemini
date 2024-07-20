@@ -71,7 +71,9 @@ st.write("")
 api_key = st.text_input("Enter your Google Gemini API key", type="password")
 db_file = st.file_uploader("Upload your SQLite database file", type="db")
 question = st.text_input("Enter your question")
-prompt = """You are an expert in writing SQL queries. Based on the provided database metadata and user question, generate a SQL query to identify records with duplicate values in a specified column. The query should:
+prompt = """You are an expert in writing SQL queries. Based on the provided database metadata and user question. 
+If the question has the word "Duplicate" then consider the following:
+Generate a SQL query to identify records with duplicate values in a specified column. The query should:
 
 Clean the Data:
 
@@ -88,6 +90,8 @@ Return Results:
 The result should include the original column values and any other relevant columns from the table.
 
 Based on the question consider this also: The records might not be actual duplicates, find the duplicate records in the column {Use from the question} only such that they only have special character differences or spaces or carriage returns, include all special characters to be removed before comparing like ,.()-/\ etc. Do not use regex replace as it doesn't work on the db. Remove them and then compare records for duplicates and return the only the duplicate records
+
+First analyze the question and then generate a relevant SQL, make sure to generate it correctly.
 """
 
 if st.button("Generate SQL Query"):
