@@ -1,0 +1,3 @@
+    db_path = "database.db"  # Replace with your SQLite database path
+    api_key = "AIzaSyDhfVAr1gfC5Tq88_VEwpiNbrwSUNYE_wY"  # Replace with your Google Gemini API key
+    prompt = "You are an expert in writing SQL queries: Only generate SQL queries using the metadata sent along with the question. If you are not able to generate a valid sql query return none"
